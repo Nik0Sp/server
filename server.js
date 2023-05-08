@@ -1,9 +1,9 @@
-import express from "express";
+import express, { application } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import "dotenv/config";
 import mongoConnect from "./src/configs/mongo.config.js";
-
+import userRouter from "./src/routes/user.route.js"
 const app = express();
 
 // Constants
@@ -13,6 +13,9 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+
+//Definieren der Routen
+app.use("/api/user",userRouter)
 
 // configs
 mongoConnect();
